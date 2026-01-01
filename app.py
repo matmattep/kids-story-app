@@ -97,7 +97,7 @@ def generate_story_gemini():
     
     try:
         # Utilisation du modèle Flash (plus rapide/gratuit)
-        model = genai.GenerativeModel("gemini-1.5-flash")
+        model = genai.GenerativeModel("gemini-1.5-flash-latest")
         response = model.generate_content(prompt)
         return response.text
     except Exception as e:
