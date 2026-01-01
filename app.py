@@ -91,7 +91,7 @@ except:
 # 3. INTERFACE UTILISATEUR (SIDEBAR)
 # ==========================================
 st.title("🦄 La Fabrique à Histoires")
-st.caption("Moteur : Google Gemini 2.5 Flash ⚡ | Audio : OpenAI 🔊")
+st.caption("Cree avec ❤️ par Papa | Moteur : Google Gemini 2.5 Flash ⚡ | Audio : OpenAI 🔊")
 
 with st.sidebar:
     st.header("👶 L'Enfant")
