@@ -53,7 +53,7 @@ with st.sidebar:
     st.header("👶 L'Enfant")
     col1, col2 = st.columns(2)
     with col1: sexe = st.radio("Genre", ["Garçon 👦", "Fille 👧"])
-    with col2: age = st.number_input("Âge", 1, 2, 3, 4, 5)
+    with col2: age = st.number_input("Âge", 1, 10, 4)
     prenom = st.text_input("Prénom", placeholder="ex: Maxence")
     
     st.divider()
