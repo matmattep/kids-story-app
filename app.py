@@ -10,16 +10,48 @@ st.set_page_config(page_title="Histoires Magiques ✨", page_icon="🦄", layout
 
 st.markdown("""
 <style>
-    .stApp { background-color: #F0F8FF; }
+    /* Fond général */
+    .stApp { 
+        background-color: #F0F8FF; 
+    }
+    
+    /* CORRECTION : Force le texte en gris foncé partout (pour contrer le mode sombre) */
+    .stApp, .stMarkdown, p, div {
+        color: #333333;
+    }
+    
+    /* Force la couleur des titres */
+    h1, h2, h3, h4, h5, h6 { 
+        color: #4B0082 !important; 
+        font-family: 'Comic Sans MS', 'Chalkboard SE', sans-serif; 
+    }
+    
+    /* Style du bouton */
     div.stButton > button {
-        background-color: #FF69B4; color: white; border-radius: 25px; 
-        padding: 12px 28px; font-size: 1.3em; font-weight: bold; border: none; width: 100%;
+        background-color: #FF69B4; 
+        color: white !important; /* Texte blanc SUR le bouton rose */
+        border-radius: 25px; 
+        padding: 12px 28px; 
+        font-size: 1.3em; 
+        font-weight: bold; 
+        border: none; 
+        width: 100%;
         box-shadow: 0px 4px 6px rgba(0,0,0,0.1);
     }
-    div.stButton > button:hover { background-color: #FF1493; transform: scale(1.02); color: white;}
-    h1, h2 { color: #4B0082; font-family: 'Comic Sans MS', sans-serif; }
+    div.stButton > button:hover { 
+        background-color: #FF1493; 
+        transform: scale(1.02); 
+        color: white !important;
+    }
+    
+    /* Labels des formulaires (Radio, Input) en noir */
+    .stRadio label, .stNumberInput label, .stTextInput label, .stSelectbox label {
+        color: #333333 !important;
+        font-weight: bold;
+    }
 </style>
 """, unsafe_allow_html=True)
+
 
 # ==========================================
 # 2. AUTHENTIFICATION
