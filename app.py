@@ -22,9 +22,8 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 # ==========================================
-# 2. AUTHENTIFICATION (Gérée par Streamlit Secrets)
+# 2. AUTHENTIFICATION
 # ==========================================
-# On vérifie que les clés existent bien (elles seront ajoutées à l'étape 5)
 if "GOOGLE_API_KEY" not in st.secrets:
     st.error("Il manque la clé Google API dans les Secrets.")
     st.stop()
@@ -32,7 +31,6 @@ if "GOOGLE_API_KEY" not in st.secrets:
 if "OPENAI_API_KEY" not in st.secrets:
     st.warning("Il manque la clé OpenAI API. L'audio ne fonctionnera pas.")
 
-# Configuration des clients
 try:
     genai.configure(api_key=st.secrets["GOOGLE_API_KEY"])
 except:
@@ -47,7 +45,7 @@ except:
 # 3. INTERFACE UTILISATEUR
 # ==========================================
 st.title("🦄 La Fabrique à Histoires")
-st.caption("Scénario par Google Gemini ⚡ | Audio par OpenAI 🔊 | Créé avec ❤️ par Papounet")
+st.caption("Moteur : Google Gemini 2.5 Flash ⚡ | Audio : OpenAI 🔊 | Créé avec ❤️ par Papounet")
 
 with st.sidebar:
     st.header("👶 L'Enfant")
@@ -70,7 +68,7 @@ with st.sidebar:
 # ==========================================
 # 4. LOGIQUE METIER
 # ==========================================
- def generate_story_gemini():
+def generate_story_gemini():
     genre = "garçon" if "Garçon" in sexe else "fille"
     nom = prenom if prenom else f"le petit {genre}"
     
@@ -96,13 +94,13 @@ with st.sidebar:
     """
     
     try:
-        # VERSION VALIDÉE : Gemini 2.5 Flash
+        # VERSION MISE A JOUR : Gemini 2.5 Flash
         model = genai.GenerativeModel("gemini-2.5-flash")
         response = model.generate_content(prompt)
         return response.text
     except Exception as e:
         return f"Erreur Gemini : {e}"
-                
+
 def generate_audio_openai(text, voice_id):
     if not client_audio:
         return None
