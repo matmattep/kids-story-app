@@ -70,7 +70,7 @@ with st.sidebar:
 # ==========================================
 # 4. LOGIQUE METIER
 # ==========================================
-def generate_story_gemini():
+ def generate_story_gemini():
     genre = "garçon" if "Garçon" in sexe else "fille"
     nom = prenom if prenom else f"le petit {genre}"
     
@@ -95,26 +95,13 @@ def generate_story_gemini():
     Format : Titre avec emojis, puis texte aéré avec paragraphes. Pas de préambule.
     """
     
-    # --- BLOC INTELLIGENT DE RÉCUPÉRATION DU MODÈLE ---
     try:
-        # Essai 1 : Le standard actuel
-        model = genai.GenerativeModel("gemini-1.5-flash") 
+        # VERSION VALIDÉE : Gemini 2.5 Flash
+        model = genai.GenerativeModel("gemini-2.5-flash")
         response = model.generate_content(prompt)
         return response.text
-    except Exception as e_flash:
-        try:
-            # Essai 2 : Le fallback robuste (Gemini Pro classique)
-            model = genai.GenerativeModel("gemini-pro")
-            response = model.generate_content(prompt)
-            return response.text
-        except Exception as e_pro:
-            # ÉCHEC TOTAL -> DIAGNOSTIC
-            # On demande à Google : "Ok, qu'est-ce que j'ai le droit d'utiliser ?"
-            try:
-                available_models = [m.name for m in genai.list_models() if 'generateContent' in m.supported_generation_methods]
-                return f"⚠️ ERREUR DE MODÈLE. \n\nVoici les modèles disponibles pour ta clé API en France : \n{available_models}\n\n(Copie un de ces noms et demande-moi de mettre à jour le code)."
-            except Exception as e_list:
-                return f"Erreur critique API Google : {e_flash}"
+    except Exception as e:
+        return f"Erreur Gemini : {e}"
                 
 def generate_audio_openai(text, voice_id):
     if not client_audio:
